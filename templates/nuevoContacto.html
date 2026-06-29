@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIDUCCI – Nuevo Contacto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <link rel="stylesheet" href="/static/css/paginaPrincipal.css" />
+  <link rel="stylesheet" href="/static/css/nuevoContacto.css" />
+</head>
+<body class="dashboard-body">
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-linea-l"></div>
+      <h1 class="sidebar-marca">FIDUCCI</h1>
+      <p class="sidebar-subtitulo">Agenda de Contactos</p>
+      <div class="sidebar-divisor"></div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="/dashboard" class="nav-item activo">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Contactos
+      </a>
+      <a href="/dashboard" class="nav-item">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        Favoritos
+      </a>
+      <a href="/actividad" class="nav-item">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        Actividad
+      </a>
+      <a href="/reporte" class="nav-item">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        Reporte
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-divisor"></div>
+      <div class="usuario-info" style="cursor:pointer;" title="Ver mi perfil" onclick="window.location.href='/perfil'">
+        <div class="usuario-avatar" id="usuarioAvatar">D</div>
+        <div class="usuario-datos">
+          <span class="usuario-nombre" id="usuarioNombre">Cargando...</span>
+          <span class="usuario-rol" id="usuarioRol">–</span>
+        </div>
+        <svg style="width:14px;height:14px;color:rgba(255,255,255,0.4);flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </div>
+      <p class="sidebar-copy">© 2026 FIDUCCI</p>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <div class="page-topbar">
+      <a href="/dashboard" class="btn-volver" id="btnVolver">← Cancelar</a>
+      <div class="page-topbar-info">
+        <h2 class="page-topbar-titulo">Nuevo Contacto</h2>
+        <p class="page-topbar-sub">Los campos con * son obligatorios</p>
+      </div>
+    </div>
+
+    <div id="vistaFormulario" class="form-wrapper">
+
+      <div class="alert alert-error hidden" id="alertaError">
+        <span class="alert-icon">✕</span>
+        <span class="alert-text" id="alertaErrorTexto"></span>
+      </div>
+
+      <div class="form-card">
+        <div class="form-card-header">
+          <h3 class="form-card-titulo">Información del contacto</h3>
+          <p class="form-card-sub">Complete todos los campos obligatorios antes de guardar.</p>
+        </div>
+
+        <form id="formularioNuevo" onsubmit="return false;">
+
+          <div class="field-row-two">
+            <div class="field-group">
+              <label for="fNombre">Nombre *</label>
+              <input type="text" id="fNombre" class="field-input" placeholder="Ana Cecilia" />
+            </div>
+            <div class="field-group">
+              <label for="fApellido">Apellidos *</label>
+              <input type="text" id="fApellido" class="field-input" placeholder="Vargas Méndez" />
+            </div>
+          </div>
+
+          <div class="field-row-two">
+            <div class="field-group">
+              <label for="fTelefono">Teléfono * <small style="color:var(--text-light);font-weight:400;">(8 dígitos)</small></label>
+              <input type="tel" id="fTelefono" class="field-input" placeholder="8888-1234" maxlength="15" />
+            </div>
+            <div class="field-group">
+              <label for="fEmail">Correo electrónico *</label>
+              <input type="email" id="fEmail" class="field-input" placeholder="correo@ejemplo.com" />
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="fDireccion">Dirección</label>
+            <input type="text" id="fDireccion" class="field-input" placeholder="Av. Central, San José" />
+          </div>
+
+          <div class="field-row-two">
+            <div class="field-group">
+              <label for="fCategoria">Categoría *</label>
+              <select id="fCategoria" class="field-input field-select">
+                <option value="">Seleccionar...</option>
+                <option value="Familia">Familia</option>
+                <option value="Trabajo">Trabajo</option>
+                <option value="Amigos">Amigos</option>
+                <option value="VIP">VIP</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="fEmpresa">Empresa</label>
+              <input type="text" id="fEmpresa" class="field-input" placeholder="Nombre de empresa" />
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="fCargo">Cargo</label>
+            <input type="text" id="fCargo" class="field-input" placeholder="Gerente, Profesor, etc." />
+          </div>
+
+          <div class="form-acciones">
+            <button type="button" class="btn-secondary btn-cancelar-form" onclick="window.location.href='/dashboard'">Cancelar</button>
+            <button type="submit" class="btn-primary btn-guardar-form" onclick="guardar_nuevo_contacto()">
+              <span id="guardarTexto">Guardar Contacto</span>
+              <span class="btn-spinner hidden" id="guardarSpinner"></span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <div id="vistaExito" class="hidden exito-wrapper">
+      <div class="exito-card">
+        <div class="confirm-icono confirm-icono-exito">✓</div>
+        <h3 class="confirm-titulo">¡Contacto agregado exitosamente!</h3>
+        <p class="confirm-desc">El contacto fue guardado en la agenda.</p>
+        <div class="confirm-acciones">
+          <button class="btn-secondary" onclick="ver_contacto_creado()">Ver contacto</button>
+          <button class="btn-primary btn-aceptar" onclick="window.location.href='/dashboard'">Aceptar</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="/static/JavaScript/contactoForm.js"></script>
+  <script src="/static/JavaScript/nuevoContacto.js"></script>
+</body>
+</html>

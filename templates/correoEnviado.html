@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIDUCCI – Correo enviado</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/correoEnviado.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <aside class="brand-panel">
+    <div class="brand-corner"></div>
+
+    <div class="brand-content">
+      <h1 class="brand-name">FIDUCCI</h1>
+      <div class="brand-divider"></div>
+      <p class="brand-tagline">Revisa tu bandeja<br>de entrada.</p>
+      <blockquote class="brand-quote">"Organiza tu mundo,<br>conecta con confianza."</blockquote>
+      <div class="brand-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot active"></span>
+      </div>
+    </div>
+
+    <footer class="brand-footer">
+      Sistema seguro &nbsp;·&nbsp; Datos protegidos &nbsp;·&nbsp; © 2026
+    </footer>
+  </aside>
+
+  <main class="auth-panel">
+    <div class="auth-card" id="card-success">
+      <div class="card-top-bar"></div>
+      <div class="card-body success-body">
+
+        <div class="success-icon-wrap">
+          <svg class="success-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+
+        <h2 class="card-title success-title">¡Correo enviado!</h2>
+        <p class="card-subtitle success-subtitle">
+          Revisa tu bandeja de entrada y sigue las instrucciones<br>
+          para restablecer tu contraseña.
+        </p>
+
+        <div class="spam-note">
+          Si no encuentras el correo, revisa la carpeta de spam.
+        </div>
+
+        <button class="btn-primary" id="btn-back-login">← Volver al inicio de sesión</button>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='JavaScript/correoEnviado.js') }}"></script>
+</body>
+</html>

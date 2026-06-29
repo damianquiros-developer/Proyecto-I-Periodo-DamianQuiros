@@ -1,0 +1,95 @@
+/* Apariencia del registro */
+.field-row-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+
+/* Marca de requerido */
+.required {
+  color: var(--red);
+  font-size: .75rem;
+  margin-left: 1px;
+}
+
+
+/* Fuerza de contrasena */
+.strength-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.strength-label {
+  font-size: .75rem;
+  color: var(--text-light);
+}
+
+.strength-label strong {
+  font-weight: 600;
+}
+
+.strength-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 4px;
+  transition: width .3s ease, background .3s ease;
+}
+
+.strength-fill.debil    { width: 25%; background: #e74c3c; }
+.strength-fill.regular  { width: 50%; background: #e67e22; }
+.strength-fill.buena    { width: 75%; background: #f1c40f; }
+.strength-fill.fuerte   { width: 100%; background: #27ae60; }
+
+.strength-text-debil   { color: #e74c3c !important; }
+.strength-text-regular { color: #e67e22 !important; }
+.strength-text-buena   { color: #f1c40f !important; }
+.strength-text-fuerte  { color: #27ae60 !important; }
+
+
+/* Terminos y ayuda */
+.terms-label {
+  align-items: flex-start;
+  gap: 8px;
+  font-size: .82rem;
+  color: var(--text-mid);
+  line-height: 1.5;
+}
+
+.terms-label input[type="checkbox"] {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.terms-link {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity .2s;
+}
+
+.terms-link:hover { opacity: .75; }
+
+
+.card-helper {
+  font-size: .83rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+
+/* Ajuste para pantallas pequenas */
+@media (max-width: 480px) {
+  .field-row-two {
+    grid-template-columns: 1fr;
+  }
+}

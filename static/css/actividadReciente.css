@@ -1,0 +1,242 @@
+/* Apariencia de actividad reciente */
+.actividad-resumen {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 920px;
+  margin-bottom: 16px;
+}
+
+.actividad-resumen-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.actividad-resumen-num {
+  display: block;
+  color: var(--text-dark);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.actividad-resumen-label {
+  display: block;
+  margin-top: 5px;
+  color: var(--text-light);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Caja del historial */
+.actividad-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  max-width: 920px;
+  overflow: hidden;
+}
+
+.actividad-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #fff, var(--bg-soft));
+}
+
+.actividad-card-titulo {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.actividad-card-sub {
+  color: var(--text-light);
+  font-size: 0.78rem;
+  margin: 4px 0 0;
+}
+
+.actividad-filtro {
+  min-width: 138px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--text-mid);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 9px 11px;
+  outline: none;
+}
+
+.actividad-filtro:focus {
+  border-color: var(--teal);
+}
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 44px 20px;
+}
+
+/* Lista de acciones */
+.actividad-lista-full {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 12px;
+}
+
+.act-dia {
+  color: var(--text-light);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 18px 24px 8px;
+}
+
+.act-item {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 14px;
+  padding: 12px 24px;
+  position: relative;
+}
+
+.act-item::before {
+  content: "";
+  position: absolute;
+  left: 43px;
+  top: 54px;
+  bottom: -12px;
+  width: 1px;
+  background: var(--border);
+}
+
+.act-item:last-child::before {
+  display: none;
+}
+
+.act-icono-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #eef2f6;
+}
+
+.act-icono-wrap svg {
+  width: 17px;
+  height: 17px;
+  stroke: var(--text-mid);
+}
+
+/* Colores de los iconos */
+.act-icono-azul { background: #e8f1f8; }
+.act-icono-azul svg { stroke: #2e5f8a; }
+
+.act-icono-verde { background: #edfaf3; }
+.act-icono-verde svg { stroke: var(--green); }
+
+.act-icono-rojo { background: var(--red-bg); }
+.act-icono-rojo svg { stroke: var(--red); }
+
+.act-icono-dorado { background: #fef3d4; }
+.act-icono-dorado svg { stroke: var(--gold); }
+
+.act-body {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--white);
+}
+
+.act-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.act-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 20px;
+  background: var(--bg-soft);
+  color: var(--text-mid);
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  text-transform: uppercase;
+}
+
+.act-desc {
+  color: var(--text-dark);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.act-hora {
+  color: var(--text-light);
+  font-size: 0.74rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Ajuste para pantallas pequenas */
+@media (max-width: 768px) {
+  .actividad-resumen {
+    grid-template-columns: 1fr;
+  }
+
+  .actividad-card-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .actividad-filtro {
+    width: 100%;
+  }
+
+  .act-item {
+    grid-template-columns: 34px 1fr;
+    gap: 10px;
+    padding: 10px 16px;
+  }
+
+  .act-icono-wrap {
+    width: 34px;
+    height: 34px;
+  }
+
+  .act-item::before {
+    left: 33px;
+    top: 48px;
+  }
+
+  .act-dia {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

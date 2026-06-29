@@ -1,0 +1,124 @@
+/* Apariencia de notas y llamadas */
+.int-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.btn-nueva-interaccion {
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid var(--teal);
+  background: none;
+  color: var(--teal);
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: all 0.2s;
+}
+.btn-nueva-interaccion:hover { background: var(--teal); color: var(--white); }
+
+
+/* Lista de registros */
+#interaccionesLista { display: flex; flex-direction: column; }
+
+.int-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.int-item:last-child { border-bottom: none; }
+
+.int-icono {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #eef2f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.int-icono svg        { width: 13px; height: 13px; stroke: var(--text-mid); }
+.int-icono-verde      { background: #edfaf3; }
+.int-icono-verde svg  { stroke: var(--green); }
+
+.int-cuerpo { flex: 1; min-width: 0; }
+
+.int-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.int-tipo  { font-size: 0.78rem; font-weight: 600; color: var(--text-dark); }
+.int-fecha { font-size: 0.68rem; color: var(--text-light); white-space: nowrap; }
+.int-desc  { font-size: 0.78rem; color: var(--text-mid); margin: 2px 0 2px; line-height: 1.4; }
+.int-autor { font-size: 0.68rem; color: var(--text-light); }
+
+/* Boton para borrar */
+.int-eliminar {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 0.7rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+.int-eliminar:hover { color: var(--red); background: var(--red-bg); }
+
+.int-vacio {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  text-align: center;
+  padding: 20px 0;
+  margin: 0;
+}
+
+
+/* Caja para agregar registro */
+.modal-interaccion { max-width: 480px; }
+
+.int-tipos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+/* Tipos de registro */
+.int-tipo-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+}
+.int-tipo-btn svg { width: 14px; height: 14px; stroke: currentColor; flex-shrink: 0; }
+.int-tipo-btn:hover { border-color: var(--teal); color: var(--teal); }
+.int-tipo-btn.activo {
+  border-color: var(--teal);
+  background: rgba(31,78,95,0.06);
+  color: var(--teal);
+  font-weight: 600;
+}

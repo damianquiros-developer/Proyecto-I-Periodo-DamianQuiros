@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIDUCCI – Agenda de Contactos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <link rel="stylesheet" href="/static/css/paginaPrincipal.css" />
+  <link rel="stylesheet" href="/static/css/importarYExportar.css" />
+  <link rel="stylesheet" href="/static/css/busquedaAvanzada.css" />
+</head>
+<body class="dashboard-body">
+
+  <aside class="sidebar">
+
+    <div class="sidebar-header">
+      <div class="sidebar-linea-l"></div>
+      <h1 class="sidebar-marca">FIDUCCI</h1>
+      <p class="sidebar-subtitulo">Agenda de Contactos</p>
+      <div class="sidebar-divisor"></div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item activo" data-seccion="contactos" onclick="return cambiar_seccion(event, 'contactos')">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Contactos
+      </a>
+      <a href="#" class="nav-item" data-seccion="favoritos" onclick="return cambiar_seccion(event, 'favoritos')">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        Favoritos
+      </a>
+      <a href="#" class="nav-item" data-seccion="actividad" onclick="return cambiar_seccion(event, 'actividad')">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        Actividad
+        <span class="badge-rec hidden" id="badgeRecordatorios">0</span>
+      </a>
+      <a href="/reporte" class="nav-item">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        Reporte
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-divisor"></div>
+      <div class="usuario-info" style="cursor:pointer;" title="Ver mi perfil" onclick="window.location.href='/perfil'">
+        <div class="usuario-avatar" id="usuarioAvatar">D</div>
+        <div class="usuario-datos">
+          <span class="usuario-nombre" id="usuarioNombre">Cargando...</span>
+          <span class="usuario-rol" id="usuarioRol">–</span>
+        </div>
+        <svg style="width:14px;height:14px;color:rgba(255,255,255,0.4);flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </div>
+      <p class="sidebar-copy">© 2026 FIDUCCI</p>
+    </div>
+
+  </aside>
+
+  <main class="main-content">
+
+    <section id="seccion-contactos" class="seccion activa">
+
+      <header class="content-header">
+        <div class="header-info">
+          <h2 class="content-titulo">Agenda de Contactos</h2>
+          <p class="content-meta">
+            <span id="totalContactos">0</span> contactos
+            &nbsp;·&nbsp;
+            Última actualización: <span id="ultimaActualizacion">hoy</span>
+          </p>
+        </div>
+        <div class="header-acciones">
+          <button class="btn-exportar" onclick="exportar_csv()" title="Exportar CSV">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Exportar
+          </button>
+          <button class="btn-exportar" onclick="abrir_modal_importar()" title="Importar contactos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            Importar
+          </button>
+          <button class="btn-primary btn-nuevo" onclick="abrir_modal_nuevo()">
+            + Nuevo Contacto
+          </button>
+        </div>
+      </header>
+
+      <div class="toolbar">
+        <div class="buscador-wrapper">
+          <svg class="buscador-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            type="text"
+            id="inputBusqueda"
+            class="buscador-input"
+            placeholder="Buscar contacto..."
+            oninput="aplicar_busqueda(this.value)"
+            autocomplete="off"
+          />
+          <button class="buscador-limpiar hidden" id="btnLimpiarBusqueda" onclick="limpiar_busqueda()">✕</button>
+        </div>
+
+        <div class="filtros" id="filtros">
+          <button class="filtro-btn activo" data-filtro="todos"    onclick="aplicar_filtro(event, 'todos')">Todos</button>
+          <button class="filtro-btn"        data-filtro="VIP"      onclick="aplicar_filtro(event, 'VIP')">VIP</button>
+          <button class="filtro-btn"        data-filtro="Familia"  onclick="aplicar_filtro(event, 'Familia')">Familia</button>
+          <button class="filtro-btn"        data-filtro="Trabajo"  onclick="aplicar_filtro(event, 'Trabajo')">Trabajo</button>
+          <button class="filtro-btn"        data-filtro="Amigos"   onclick="aplicar_filtro(event, 'Amigos')">Amigos</button>
+          <button class="filtro-btn"        data-filtro="Otro"     onclick="aplicar_filtro(event, 'Otro')">Otro</button>
+          <button class="filtro-btn" id="btnOrdenarAZ" onclick="ordenar_az()" title="Ordenar de A a Z">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;vertical-align:middle;">
+              <line x1="3" y1="7" x2="21" y2="7"/>
+              <line x1="3" y1="12" x2="15" y2="12"/>
+              <line x1="3" y1="17" x2="9" y2="17"/>
+            </svg>
+            A–Z
+          </button>
+          <button class="btn-filtro-avanzado" id="btnFiltroAvanzado" onclick="toggle_panel_avanzado()" title="Filtros avanzados">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="4" y1="6" x2="20" y2="6"/>
+              <line x1="8" y1="12" x2="16" y2="12"/>
+              <line x1="11" y1="18" x2="13" y2="18"/>
+            </svg>
+            Filtros
+            <span class="badge-filtros hidden" id="badgeFiltros">0</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-avanzado hidden" id="panelAvanzado">
+        <div class="panel-avanzado-header">
+          <span class="panel-avanzado-titulo">Filtros avanzados</span>
+          <button class="panel-avanzado-limpiar" onclick="limpiar_filtros_avanzados()">Limpiar todo</button>
+        </div>
+        <div class="panel-avanzado-grid">
+          <div class="field-group">
+            <span class="fa-grupo-label">Categoría</span>
+            <div class="fa-checkboxes">
+              <label class="fa-check-label"><input type="checkbox" class="fa-categoria-check" value="Familia" />Familia</label>
+              <label class="fa-check-label"><input type="checkbox" class="fa-categoria-check" value="Trabajo" />Trabajo</label>
+              <label class="fa-check-label"><input type="checkbox" class="fa-categoria-check" value="Amigos" />Amigos</label>
+              <label class="fa-check-label"><input type="checkbox" class="fa-categoria-check" value="VIP" />VIP</label>
+              <label class="fa-check-label"><input type="checkbox" class="fa-categoria-check" value="Otro" />Otro</label>
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="faEmpresa">Empresa</label>
+            <input type="text" id="faEmpresa" class="field-input" placeholder="Nombre de empresa" />
+          </div>
+          <div class="field-group">
+            <label for="faCiudad">Ciudad</label>
+            <input type="text" id="faCiudad" class="field-input" placeholder="San José" />
+          </div>
+          <div class="field-group">
+            <label for="faPais">País</label>
+            <input type="text" id="faPais" class="field-input" placeholder="Costa Rica" />
+          </div>
+          <div class="field-group">
+            <label for="faFechaDesde">Fecha desde</label>
+            <input type="date" id="faFechaDesde" class="field-input" />
+          </div>
+          <div class="field-group">
+            <label for="faFechaHasta">Fecha hasta</label>
+            <input type="date" id="faFechaHasta" class="field-input" />
+          </div>
+        </div>
+        <label class="fa-check-fav">
+          <input type="checkbox" id="faSoloFavoritos" />
+          Mostrar solo favoritos
+        </label>
+        <div class="panel-avanzado-acciones">
+          <button class="btn-primary" onclick="aplicar_filtros_avanzados()">Aplicar filtros</button>
+        </div>
+      </div>
+
+      <div class="contactos-grid" id="contactosGrid"></div>
+
+      <div class="estado-vacio hidden" id="estadoVacio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+        </svg>
+        <p>No se encontraron contactos</p>
+        <span id="estadoVacioSub">Intenta con otro filtro o búsqueda</span>
+      </div>
+
+      <div class="spinner-wrapper" id="spinnerContactos">
+        <div class="spinner"></div>
+      </div>
+
+    </section>
+
+    <section id="seccion-favoritos" class="seccion">
+      <header class="content-header">
+        <div class="header-info">
+          <h2 class="content-titulo">Favoritos</h2>
+          <p class="content-meta"><span id="totalFavoritos">0</span> contactos marcados</p>
+        </div>
+      </header>
+      <div class="contactos-grid" id="favoritosGrid"></div>
+      <div class="estado-vacio hidden" id="estadoVacioFavoritos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <p>Sin favoritos aún</p>
+        <span>Marca contactos con ★ para verlos aquí</span>
+      </div>
+    </section>
+
+    <section id="seccion-actividad" class="seccion">
+      <header class="content-header">
+        <div class="header-info">
+          <h2 class="content-titulo">Actividad Reciente</h2>
+          <p class="content-meta">Últimas acciones en el sistema</p>
+        </div>
+      </header>
+      <div class="actividad-lista" id="actividadLista"></div>
+    </section>
+
+  </main>
+
+  <div class="modal-overlay hidden" id="modalOverlay" onclick="cerrar_modal_si_overlay(event)">
+    <div class="modal-card">
+
+      <div class="modal-header">
+        <h3 class="modal-titulo" id="modalTitulo">Nuevo Contacto</h3>
+        <button class="modal-cerrar" onclick="cerrar_modal()">✕</button>
+      </div>
+
+      <div class="alert alert-error hidden" id="modalAlertaError">
+        <span class="alert-icon">✕</span>
+        <span class="alert-text" id="modalMensajeError"></span>
+      </div>
+      <div class="alert alert-success hidden" id="modalAlertaExito">
+        <span class="alert-icon">✓</span>
+        <span class="alert-text" id="modalMensajeExito"></span>
+      </div>
+
+      <form class="modal-form" id="formularioContacto" onsubmit="return false;">
+        <input type="hidden" id="contactoId" value="" />
+
+        <div class="field-row-two">
+          <div class="field-group">
+            <label for="inputNombre">Nombre *</label>
+            <input type="text" id="inputNombre" class="field-input" placeholder="Nombre" />
+          </div>
+          <div class="field-group">
+            <label for="inputApellido">Apellido *</label>
+            <input type="text" id="inputApellido" class="field-input" placeholder="Apellido" />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="inputEmail">Correo electrónico *</label>
+          <input type="email" id="inputEmail" class="field-input" placeholder="correo@ejemplo.com" />
+        </div>
+
+        <div class="field-row-two">
+          <div class="field-group">
+            <label for="inputTelefono">Teléfono * <small style="color:var(--text-light);font-weight:400;">(8 dígitos)</small></label>
+            <input type="tel" id="inputTelefono" class="field-input" placeholder="8888-1234" maxlength="15" />
+          </div>
+          <div class="field-group">
+            <label for="inputCategoria">Categoría *</label>
+            <select id="inputCategoria" class="field-input field-select">
+              <option value="">Seleccionar...</option>
+              <option value="Familia">Familia</option>
+              <option value="Trabajo">Trabajo</option>
+              <option value="Amigos">Amigos</option>
+              <option value="VIP">VIP</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row-two">
+          <div class="field-group">
+            <label for="inputEmpresa">Empresa</label>
+            <input type="text" id="inputEmpresa" class="field-input" placeholder="Nombre de empresa" />
+          </div>
+          <div class="field-group">
+            <label for="inputCargo">Cargo</label>
+            <input type="text" id="inputCargo" class="field-input" placeholder="Cargo o puesto" />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="inputNotas">Notas</label>
+          <textarea id="inputNotas" class="field-input field-textarea" placeholder="Notas adicionales..." rows="3"></textarea>
+        </div>
+
+        <div class="modal-acciones">
+          <button type="button" class="btn-secondary" onclick="cerrar_modal()">Cancelar</button>
+          <button type="submit" class="btn-primary" id="btnGuardar" onclick="guardar_contacto()">
+            <span id="btnGuardarTexto">Guardar</span>
+            <span class="btn-spinner hidden" id="btnGuardarSpinner"></span>
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="modal-overlay hidden" id="modalImportarOverlay" onclick="cerrar_importar_si_overlay(event)">
+    <div class="modal-card modal-importar">
+      <div class="modal-header">
+        <h3 class="modal-titulo">Importar Contactos</h3>
+        <button class="modal-cerrar" onclick="cerrar_modal_importar()">✕</button>
+      </div>
+      <div class="pasos-indicador">
+        <div class="paso-indicador activo" data-paso="1"><span class="paso-num">1</span> Archivo</div>
+        <div class="paso-linea"></div>
+        <div class="paso-indicador" data-paso="2"><span class="paso-num">2</span> Mapeo</div>
+        <div class="paso-linea"></div>
+        <div class="paso-indicador" data-paso="3"><span class="paso-num">3</span> Resultado</div>
+      </div>
+      <div class="alert alert-error hidden" id="importarAlerta" style="margin:12px 28px 0;">
+        <span class="alert-icon">✕</span>
+        <span class="alert-text" id="importarAlertaTexto"></span>
+      </div>
+      <div id="importarPaso1" style="padding:20px 28px 28px;">
+        <div class="zona-archivo" id="importarZonaArchivo"
+          ondrop="on_drop_archivo(event)" ondragover="on_dragover(event)" ondragleave="on_dragleave()"
+          onclick="document.getElementById('inputArchivoImportar').click()">
+          <div class="zona-archivo-icono">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="12" y1="18" x2="12" y2="12"/>
+              <line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+          </div>
+          <p class="zona-archivo-texto">Arrastra tu archivo aquí o haz clic para seleccionar</p>
+          <p class="zona-archivo-sub">Formatos: .csv, .xlsx, .xls</p>
+          <p class="zona-archivo-nombre" id="archivoNombre">Ningún archivo seleccionado</p>
+        </div>
+        <input type="file" id="inputArchivoImportar" accept=".csv,.xlsx,.xls"
+          style="display:none;" onchange="on_archivo_seleccionado(event)" />
+        <div id="importarPrevisualizacion" class="hidden">
+          <div class="mapeo-seccion">
+            <p class="mapeo-titulo">Mapeo de columnas</p>
+            <div id="mapeoColumnas"></div>
+          </div>
+          <div class="preview-seccion">
+            <p class="preview-titulo">Vista previa (3 filas)</p>
+            <div class="preview-scroll"><table class="preview-tabla" id="importarTablaPreview"></table></div>
+          </div>
+        </div>
+        <div class="modal-acciones" style="margin-top:20px;">
+          <button class="btn-secondary" onclick="cerrar_modal_importar()">Cancelar</button>
+          <button class="btn-primary hidden" id="importarBtnPaso2"
+            onclick="ir_paso_2()" style="width:auto;padding:10px 22px;">Continuar →</button>
+        </div>
+      </div>
+      <div id="importarPaso2" class="hidden" style="padding:20px 28px 28px;">
+        <p style="font-size:.875rem;color:var(--text-mid);margin:0 0 20px;">Confirma la importación. Duplicados serán omitidos.</p>
+        <div class="modal-acciones">
+          <button class="btn-secondary" onclick="mostrar_paso_importar(1)">← Volver</button>
+          <button class="btn-primary" id="btnEjecutarImportar"
+            onclick="ejecutar_importacion()" style="width:auto;padding:10px 22px;display:inline-flex;align-items:center;gap:8px;">
+            <span id="importarBtnTexto">Importar contactos</span>
+            <span class="btn-spinner hidden" id="importarSpinner"></span>
+          </button>
+        </div>
+      </div>
+      <div id="importarPaso3" class="hidden">
+        <div class="importar-resultado">
+          <div class="importar-resultado-icono">✓</div>
+          <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin:0;">¡Importación completada!</h4>
+          <p class="confirm-desc" id="importarResultadoMsg">Contactos importados correctamente.</p>
+          <button class="btn-primary" onclick="cerrar_modal_importar()" style="width:auto;padding:10px 24px;margin-top:8px;">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buscador-flotante-overlay hidden" id="buscadorFlotanteOverlay"
+    onclick="cerrar_flotante_si_overlay(event)">
+    <div class="buscador-flotante-card">
+      <div class="buscador-flotante-input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" id="inputBuscadorFlotante" class="buscador-flotante-input"
+          placeholder="Buscar contacto..." oninput="buscar_flotante(this.value)" autocomplete="off" />
+        <span class="buscador-flotante-atajo">ESC</span>
+      </div>
+      <div class="flotante-resultados" id="resultadosFlotantes"></div>
+      <div class="buscador-flotante-footer">
+        <span><kbd>↑↓</kbd> navegar</span>
+        <span><kbd>Enter</kbd> abrir</span>
+        <span><kbd>ESC</kbd> cerrar</span>
+        <span><kbd>Ctrl K</kbd> abrir</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/JavaScript/contactoForm.js"></script>
+  <script src="/static/JavaScript/contactos.js"></script>
+  <script src="/static/JavaScript/interfaz.js"></script>
+  <script src="/static/JavaScript/importarYExportar.js"></script>
+  <script src="/static/JavaScript/busquedaAvanzada.js"></script>
+  <script src="/static/JavaScript/recordatorios.js"></script>
+  <script src="/static/JavaScript/dashboard.js"></script>
+
+</body>
+</html>

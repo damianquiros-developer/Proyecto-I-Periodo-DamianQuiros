@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIDUCCI – Detalle de Contacto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <link rel="stylesheet" href="/static/css/paginaPrincipal.css" />
+  <link rel="stylesheet" href="/static/css/detalleContacto.css" />
+  <link rel="stylesheet" href="/static/css/interacciones.css" />
+  <link rel="stylesheet" href="/static/css/recordatorio.css" />
+</head>
+<body class="dashboard-body">
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-linea-l"></div>
+      <h1 class="sidebar-marca">FIDUCCI</h1>
+      <p class="sidebar-subtitulo">Agenda de Contactos</p>
+      <div class="sidebar-divisor"></div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="/dashboard" class="nav-item activo">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Contactos
+      </a>
+      <a href="/dashboard" class="nav-item">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        Favoritos
+      </a>
+      <a href="/actividad" class="nav-item">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        Actividad
+      </a>
+      <a href="/reporte" class="nav-item">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        Reporte
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-divisor"></div>
+      <div class="usuario-info" style="cursor:pointer;" title="Ver mi perfil" onclick="window.location.href='/perfil'">
+        <div class="usuario-avatar" id="usuarioAvatar">D</div>
+        <div class="usuario-datos">
+          <span class="usuario-nombre" id="usuarioNombre">Cargando...</span>
+          <span class="usuario-rol" id="usuarioRol">–</span>
+        </div>
+        <svg style="width:14px;height:14px;color:rgba(255,255,255,0.4);flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </div>
+      <p class="sidebar-copy">© 2026 FIDUCCI</p>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <div class="page-topbar">
+      <a href="/dashboard" class="btn-volver">← Volver</a>
+      <div class="page-topbar-info">
+        <h2 class="page-topbar-titulo">Detalle del Contacto</h2>
+        <p class="page-topbar-sub">Información completa</p>
+      </div>
+    </div>
+
+    <div class="detalle-layout">
+
+      <div class="detalle-panel-principal">
+
+        <div id="vistaDetalle">
+          <div class="detalle-perfil-header">
+            <div class="detalle-avatar-grande" id="detalleAvatar"></div>
+            <div class="detalle-perfil-info">
+              <h3 class="detalle-nombre-completo" id="detalleNombre">–</h3>
+              <p class="detalle-sub" id="detalleSub">–</p>
+              <span class="detalle-tag" id="detalleTag">–</span>
+            </div>
+            <div class="detalle-acciones-header">
+              <button class="btn-primary btn-editar-header" onclick="ir_a_editar()">Editar</button>
+              <button class="btn-eliminar-rojo" onclick="mostrar_confirm_eliminar()">Eliminar</button>
+            </div>
+          </div>
+
+          <div class="detalle-campos-grid">
+            <div class="detalle-campo-fila">
+              <span class="detalle-campo-label">Correo electrónico</span>
+              <span class="detalle-campo-valor" id="detalleEmail">–</span>
+            </div>
+            <div class="detalle-campo-fila">
+              <span class="detalle-campo-label">Teléfono</span>
+              <span class="detalle-campo-valor" id="detalleTelefono">–</span>
+            </div>
+            <div class="detalle-campo-fila">
+              <span class="detalle-campo-label">Empresa</span>
+              <span class="detalle-campo-valor" id="detalleEmpresa">–</span>
+            </div>
+            <div class="detalle-campo-fila">
+              <span class="detalle-campo-label">Tipo de contacto</span>
+              <span class="detalle-campo-valor" id="detalleTipo">–</span>
+            </div>
+            <div class="detalle-campo-fila">
+              <span class="detalle-campo-label">Favorito</span>
+              <span class="detalle-campo-valor" id="detalleFavorito">–</span>
+            </div>
+            <div class="detalle-campo-fila">
+              <span class="detalle-campo-label">Estado actual</span>
+              <span class="detalle-campo-valor" id="detalleEstado">–</span>
+            </div>
+            <div class="detalle-campo-fila">
+              <span class="detalle-campo-label">Fecha de ingreso</span>
+              <span class="detalle-campo-valor" id="detalleFecha">–</span>
+            </div>
+            <div class="detalle-campo-fila detalle-campo-full">
+              <span class="detalle-campo-label">Dirección</span>
+              <div class="detalle-notas-box" id="detalleNotas">–</div>
+            </div>
+          </div>
+
+          <p class="detalle-meta" id="detalleMeta"></p>
+        </div>
+
+        <div id="vistaConfirmEliminar" class="hidden vista-confirm">
+          <div class="confirm-icono confirm-icono-error">✕</div>
+          <h3 class="confirm-titulo">¿Eliminar contacto?</h3>
+          <p class="confirm-desc">
+            ¿Está seguro/a que desea eliminar al contacto?<br/>
+            Esta acción no puede ser revertida.
+          </p>
+          <div class="confirm-acciones">
+            <button class="btn-secondary" onclick="ocultar_confirm_eliminar()">Cancelar</button>
+            <button class="btn-eliminar-rojo btn-eliminar-confirm" onclick="ejecutar_eliminacion()">
+              <span id="eliminarTexto">Eliminar</span>
+              <span class="btn-spinner hidden" id="eliminarSpinner"></span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="detalle-panel-actividad">
+        <div class="int-panel-header">
+          <h4 class="actividad-titulo" style="margin:0;">Actividad reciente</h4>
+          <button class="btn-nueva-interaccion" onclick="abrir_modal_interaccion()">+ Registrar</button>
+        </div>
+        <div id="interaccionesLista">
+          <div class="spinner-wrapper"><div class="spinner"></div></div>
+        </div>
+      </aside>
+
+      <aside class="detalle-panel-actividad" style="margin-top:12px;">
+        <div class="rec-panel-header">
+          <h4 class="actividad-titulo" style="margin:0;">Recordatorios</h4>
+          <button class="btn-nuevo-rec" onclick="abrir_modal_recordatorio()">+ Nuevo</button>
+        </div>
+        <div id="recordatoriosLista">
+          <div class="spinner-wrapper" style="padding:12px;"><div class="spinner"></div></div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <div class="modal-overlay hidden" id="modalInteraccionOverlay"
+    onclick="cerrar_interaccion_si_overlay(event)">
+    <div class="modal-card modal-interaccion">
+      <div class="modal-header">
+        <h3 class="modal-titulo">Registrar Interacción</h3>
+        <button class="modal-cerrar" onclick="cerrar_modal_interaccion()">✕</button>
+      </div>
+      <div style="padding:16px 28px 28px;display:flex;flex-direction:column;gap:16px;">
+        <div class="alert alert-error hidden" id="intAlerta">
+          <span class="alert-icon">✕</span>
+          <span class="alert-text" id="intAlertaTxt"></span>
+        </div>
+        <div class="field-group">
+          <label>Tipo de interacción *</label>
+          <div class="int-tipos-grid" id="tipoInteraccionSelector"></div>
+        </div>
+        <div class="field-group">
+          <label for="intDescripcion">Descripción *</label>
+          <textarea id="intDescripcion" class="field-input field-textarea" rows="3"
+            placeholder="Describe brevemente la interacción..."
+            style="resize:vertical;min-height:80px;"></textarea>
+        </div>
+        <div class="modal-acciones">
+          <button class="btn-secondary" onclick="cerrar_modal_interaccion()"
+            style="width:auto;padding:10px 20px;">Cancelar</button>
+          <button class="btn-primary" id="btnGuardarInt" onclick="guardar_interaccion()"
+            style="width:auto;padding:10px 20px;display:inline-flex;align-items:center;gap:8px;">
+            <span id="intBtnTxt">Guardar</span>
+            <span class="btn-spinner hidden" id="intSpinner"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay hidden" id="modalRecordatorioOverlay"
+    onclick="cerrar_rec_si_overlay(event)">
+    <div class="modal-card modal-recordatorio">
+      <div class="modal-header">
+        <h3 class="modal-titulo">Nuevo Recordatorio</h3>
+        <button class="modal-cerrar" onclick="cerrar_modal_recordatorio()">✕</button>
+      </div>
+      <div style="padding:16px 28px 28px;display:flex;flex-direction:column;gap:14px;">
+        <div class="alert alert-error hidden" id="recAlerta">
+          <span class="alert-icon">✕</span>
+          <span class="alert-text" id="recAlertaTxt"></span>
+        </div>
+        <div class="field-group">
+          <label for="recTitulo">Título del recordatorio *</label>
+          <input type="text" id="recTitulo" class="field-input"
+            placeholder="Ej: Llamar para seguimiento" />
+        </div>
+        <div class="field-group">
+          <label for="recFecha">Fecha límite *</label>
+          <input type="date" id="recFecha" class="field-input" />
+        </div>
+        <div class="modal-acciones">
+          <button class="btn-secondary" onclick="cerrar_modal_recordatorio()"
+            style="width:auto;padding:10px 20px;">Cancelar</button>
+          <button class="btn-primary" id="btnGuardarRec" onclick="guardar_recordatorio()"
+            style="width:auto;padding:10px 20px;display:inline-flex;align-items:center;gap:8px;">
+            <span id="recBtnTxt">Guardar</span>
+            <span class="btn-spinner hidden" id="recSpinner"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/JavaScript/interacciones.js"></script>
+  <script src="/static/JavaScript/recordatorios.js"></script>
+  <script src="/static/JavaScript/detalleContacto.js"></script>
+</body>
+</html>

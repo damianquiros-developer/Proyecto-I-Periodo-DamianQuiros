@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIDUCCI – Favoritos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <link rel="stylesheet" href="/static/css/paginaPrincipal.css" />
+</head>
+<body class="dashboard-body">
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-linea-l"></div>
+      <h1 class="sidebar-marca">FIDUCCI</h1>
+      <p class="sidebar-subtitulo">Agenda de Contactos</p>
+      <div class="sidebar-divisor"></div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="/dashboard" class="nav-item">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Contactos
+      </a>
+      <a href="/favoritos" class="nav-item activo">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        Favoritos
+      </a>
+      <a href="/actividad" class="nav-item">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        Actividad
+      </a>
+      <a href="/reporte" class="nav-item">
+        <svg class="nav-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        Reporte
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-divisor"></div>
+      <div class="usuario-info" style="cursor:pointer;" title="Ver mi perfil" onclick="window.location.href='/perfil'">
+        <div class="usuario-avatar" id="usuarioAvatar">D</div>
+        <div class="usuario-datos">
+          <span class="usuario-nombre" id="usuarioNombre">Cargando...</span>
+          <span class="usuario-rol" id="usuarioRol">–</span>
+        </div>
+        <svg style="width:14px;height:14px;color:rgba(255,255,255,0.4);flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </div>
+      <p class="sidebar-copy">© 2026 FIDUCCI</p>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <section class="seccion activa">
+
+      <header class="content-header">
+        <div class="header-info">
+          <h2 class="content-titulo">Favoritos</h2>
+          <p class="content-meta">
+            <span id="totalFavoritos">0</span> contactos marcados
+            &nbsp;·&nbsp;
+            Última actualización: <span id="ultimaActualizacion">hoy</span>
+          </p>
+        </div>
+        <button class="btn-primary btn-nuevo" onclick="window.location.href='/dashboard'">
+          + Nuevo Contacto
+        </button>
+      </header>
+
+      <div class="toolbar">
+        <div class="buscador-wrapper">
+          <svg class="buscador-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            type="text"
+            id="inputBusqueda"
+            class="buscador-input"
+            placeholder="Buscar favorito..."
+            oninput="aplicar_busqueda(this.value)"
+            autocomplete="off"
+          />
+          <button class="buscador-limpiar hidden" id="btnLimpiarBusqueda" onclick="limpiar_busqueda()">✕</button>
+        </div>
+        <div class="filtros">
+          <button class="filtro-btn activo" data-filtro="todos"     onclick="aplicar_filtro(event, 'todos')">Todos</button>
+          <button class="filtro-btn"        data-filtro="VIP"       onclick="aplicar_filtro(event, 'VIP')">VIP</button>
+          <button class="filtro-btn"        data-filtro="Cliente"   onclick="aplicar_filtro(event, 'Cliente')">Clientes</button>
+          <button class="filtro-btn"        data-filtro="Socio"     onclick="aplicar_filtro(event, 'Socio')">Socios</button>
+          <button class="filtro-btn"        data-filtro="Prospecto" onclick="aplicar_filtro(event, 'Prospecto')">Prospectos</button>
+        </div>
+      </div>
+
+      <div class="contactos-grid hidden" id="favoritosGrid"></div>
+
+      <div class="estado-vacio hidden" id="estadoVacio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <p>Sin favoritos aún</p>
+        <span id="estadoVacioSub">Marca contactos con ★ para verlos aquí</span>
+      </div>
+
+      <div class="spinner-wrapper" id="spinnerFavoritos">
+        <div class="spinner"></div>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="/static/JavaScript/favoritos.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+/* Apariencia de recordatorios */
+.nav-item { position: relative; }
+
+.badge-rec {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 16px;
+  height: 16px;
+  background: var(--red);
+  color: var(--white);
+  border-radius: 8px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+
+/* Parte de arriba del panel */
+.rec-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.btn-nuevo-rec {
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid var(--teal);
+  background: none;
+  color: var(--teal);
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: all 0.2s;
+}
+.btn-nuevo-rec:hover { background: var(--teal); color: var(--white); }
+
+
+/* Lista de recordatorios */
+.rec-grupo        { margin-bottom: 8px; }
+.rec-grupo-titulo {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-light);
+  margin: 0 0 6px;
+}
+.rec-grupo-atenuado { opacity: 0.6; }
+
+
+.rec-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+.rec-item:last-child { border-bottom: none; }
+
+.rec-completado .rec-titulo { text-decoration: line-through; color: var(--text-light); }
+.rec-vencido   { background: #fff8f8; border-radius: 6px; padding: 9px 6px; }
+
+.rec-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: none;
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-light);
+  transition: all 0.2s;
+}
+.rec-check:hover          { border-color: var(--teal); color: var(--teal); }
+.rec-completado .rec-check { background: var(--green); border-color: var(--green); color: var(--white); }
+
+.rec-cuerpo { flex: 1; display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.rec-titulo { font-size: 0.8rem; font-weight: 500; color: var(--text-dark); }
+.rec-fecha  { font-size: 0.68rem; color: var(--text-light); }
+.rec-fecha-vencida { color: var(--red); font-weight: 600; }
+.rec-fecha-hoy     { color: #c0712b; font-weight: 600; }
+
+.rec-eliminar {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 0.65rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+.rec-eliminar:hover { color: var(--red); }
+
+.rec-vacio {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  text-align: center;
+  padding: 16px 0;
+  margin: 0;
+}
+
+
+/* Caja para agregar recordatorio */
+.modal-recordatorio { max-width: 420px; }

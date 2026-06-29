@@ -1,0 +1,59 @@
+/* Apariencia para recuperar contrasena */
+.forgot-body {
+  align-items: center;
+  text-align: center;
+  padding-top: 36px;
+}
+
+.forgot-body .field-group {
+  text-align: left;
+  width: 100%;
+}
+
+/* Icono y textos */
+.forgot-icon-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #eef0f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.forgot-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.forgot-title {
+  font-size: 2rem !important;
+  text-align: center;
+}
+
+.forgot-subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+  color: var(--text-light);
+  line-height: 1.7;
+  text-align: center;
+  margin-top: -4px;
+}
+
+/* Boton para volver */
+.btn-back-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: .85rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  color: var(--text-mid);
+  padding: 4px 0;
+  transition: color var(--transition);
+  text-align: center;
+}
+
+.btn-back-link:hover { color: var(--teal); }

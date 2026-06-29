@@ -1,0 +1,73 @@
+/* Apariencia de correo enviado */
+.success-body {
+  align-items: center;
+  text-align: center;
+  padding: 48px 44px 44px;
+  gap: 20px;
+}
+
+
+/* Icono de confirmacion */
+.success-icon-wrap {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #d6ede6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  animation: popIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.success-check {
+  width: 38px;
+  height: 38px;
+  color: #2a9268;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: drawCheck .4s ease .3s forwards;
+}
+
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+
+
+/* Texto y nota */
+.success-title {
+  font-size: 2rem !important;
+  text-align: center;
+}
+
+.success-subtitle {
+  font-size: .875rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  text-align: center;
+  margin-top: -8px;
+}
+
+
+.spam-note {
+  width: 100%;
+  background: #f5f0e8;
+  border-radius: 8px;
+  padding: 14px 20px;
+  font-size: .83rem;
+  color: var(--text-mid);
+  text-align: center;
+  line-height: 1.5;
+}
+
+
+/* Boton principal */
+.success-body .btn-primary {
+  width: 100%;
+  margin-top: 4px;
+}

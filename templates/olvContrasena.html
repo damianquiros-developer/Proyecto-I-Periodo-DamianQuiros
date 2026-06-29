@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIDUCCI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/olvContrasena.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+</head>
+<body>
+
+  <aside class="brand-panel">
+    <div class="brand-corner"></div>
+
+    <div class="brand-content">
+      <h1 class="brand-name">FIDUCCI</h1>
+      <div class="brand-divider"></div>
+      <p class="brand-tagline" id="brand-tagline">Gestión Profesional<br>de Contactos</p>
+      <blockquote class="brand-quote">"Organiza tu mundo,<br>conecta con confianza."</blockquote>
+      <div class="brand-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+    <footer class="brand-footer">
+      Sistema seguro &nbsp;·&nbsp; Datos protegidos &nbsp;·&nbsp; © 2026
+    </footer>
+  </aside>
+
+  <main class="auth-panel">
+
+    <div class="auth-card hidden" id="view-login">
+      <div class="card-top-bar"></div>
+      <div class="card-body">
+
+        <h2 class="card-title">Bienvenido</h2>
+        <p class="card-subtitle">Inicia sesión en tu cuenta</p>
+        <hr class="card-divider" />
+
+        <div id="login-error" class="alert alert-error hidden">
+          <span class="alert-icon">✕</span>
+          <span class="alert-text">Usuario o contraseña incorrectos.</span>
+        </div>
+
+        <div class="field-group">
+          <label for="login-email">Correo electrónico</label>
+          <input id="login-email" type="text" placeholder="correo@ejemplo.com" autocomplete="username" />
+        </div>
+
+        <div class="field-group">
+          <label for="login-password">Contraseña</label>
+          <div class="input-wrapper">
+            <input id="login-password" type="password" placeholder="••••••••" autocomplete="current-password" />
+            <button class="toggle-pw" type="button" aria-label="Mostrar contraseña" data-target="login-password">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <button class="link-btn" type="button" id="btn-forgot">¿Olvidaste tu contraseña?</button>
+          <label class="checkbox-label">
+            <input type="checkbox" id="remember-me" />
+            <span>Recordarme</span>
+          </label>
+        </div>
+
+        <button class="btn-primary" id="btn-login">Iniciar sesión</button>
+
+        <div class="separator"><span>o</span></div>
+
+        <p class="card-helper">¿No tienes cuenta?</p>
+        <button class="btn-secondary" id="btn-go-register">Crear cuenta nueva</button>
+
+
+      </div>
+    </div>
+
+    <div class="auth-card hidden" id="view-register">
+      <div class="card-top-bar"></div>
+      <div class="card-body">
+
+        <h2 class="card-title">Crear cuenta</h2>
+        <p class="card-subtitle">Completa tus datos para registrarte</p>
+        <hr class="card-divider" />
+
+        <div id="register-error" class="alert alert-error hidden">
+          <span class="alert-icon">✕</span>
+          <span class="alert-text"></span>
+        </div>
+        <div id="register-success" class="alert alert-success hidden">
+          <span class="alert-icon">✓</span>
+          <span class="alert-text">Cuenta creada. Ahora puedes iniciar sesión.</span>
+        </div>
+
+        <div class="field-group">
+          <label for="reg-name">Nombre completo</label>
+          <input id="reg-name" type="text" placeholder="Tu nombre" />
+        </div>
+
+        <div class="field-group">
+          <label for="reg-username">Usuario</label>
+          <input id="reg-username" type="text" placeholder="nombre_usuario" />
+        </div>
+
+        <div class="field-group">
+          <label for="reg-email">Correo electrónico</label>
+          <input id="reg-email" type="email" placeholder="correo@ejemplo.com" />
+        </div>
+
+        <div class="field-group">
+          <label for="reg-password">Contraseña</label>
+          <div class="input-wrapper">
+            <input id="reg-password" type="password" placeholder="Mín. 6 caracteres" />
+            <button class="toggle-pw" type="button" aria-label="Mostrar contraseña" data-target="reg-password">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="btn-register">Crear cuenta</button>
+        <div class="separator"></div>
+        <button class="btn-secondary" id="btn-go-login">Volver al inicio de sesión</button>
+
+      </div>
+    </div>
+
+    <div class="auth-card" id="view-forgot">
+      <div class="card-top-bar"></div>
+      <div class="card-body forgot-body">
+
+        <div class="forgot-icon-wrap">
+          <span class="forgot-icon">🔒</span>
+        </div>
+
+        <h2 class="card-title forgot-title">Recupera tu contraseña</h2>
+        <p class="card-subtitle forgot-subtitle">
+          Ingresa tu correo y te enviaremos<br>
+          instrucciones para restablecer tu contraseña.
+        </p>
+
+        <hr class="card-divider" />
+
+        <div id="forgot-success" class="alert alert-success hidden">
+          <span class="alert-icon">✓</span>
+          <span class="alert-text"></span>
+        </div>
+
+        <div id="forgot-error" class="alert alert-error hidden">
+          <span class="alert-icon">✕</span>
+          <span class="alert-text"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="forgot-email">Correo electrónico registrado</label>
+          <input id="forgot-email" type="email" placeholder="correo@empresa.com" autocomplete="email" />
+        </div>
+
+        <button class="btn-primary" id="btn-send-forgot">Enviar instrucciones</button>
+
+        <button class="btn-back-link" id="btn-back-login" type="button">
+          ← Volver al inicio de sesión
+        </button>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="{{ url_for('static', filename='JavaScript/olvcontrasena.js') }}"></script>
+</body>
+</html>

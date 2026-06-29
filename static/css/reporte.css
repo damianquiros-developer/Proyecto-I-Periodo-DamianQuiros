@@ -1,0 +1,320 @@
+/* Apariencia del reporte */
+.reporte-wrapper {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 24px 60px;
+}
+
+/* Parte de arriba */
+.reporte-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.btn-volver-reporte,
+.btn-reporte-ghost,
+.btn-reporte-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  min-height: 38px;
+  padding: 8px 14px;
+}
+
+.btn-volver-reporte,
+.btn-reporte-ghost {
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--text-mid);
+}
+
+.btn-volver-reporte:hover,
+.btn-reporte-ghost:hover {
+  background: var(--bg-soft);
+  color: var(--text-dark);
+}
+
+.btn-reporte-primary {
+  border: 1px solid var(--teal);
+  background: var(--teal);
+  color: var(--white);
+}
+
+/* Encabezado del reporte */
+.reporte-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.reporte-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 4px;
+}
+
+.reporte-subtitulo {
+  color: var(--text-light);
+  font-size: 0.84rem;
+  margin: 0;
+}
+
+.spinner-reporte {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+/* Tarjetas con numeros */
+.reporte-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.reporte-tarjeta {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  min-height: 108px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.tarjeta-label {
+  display: block;
+  color: var(--text-light);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.tarjeta-numero {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 0.95;
+}
+
+.tarjeta-total .tarjeta-numero { color: var(--accent); }
+.tarjeta-fav .tarjeta-numero { color: var(--gold); }
+.tarjeta-normal .tarjeta-numero { color: var(--green); }
+.tarjeta-porcentaje .tarjeta-numero { color: #2e5f8a; }
+
+/* Cajas del reporte */
+.reporte-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(360px, 1.15fr);
+  gap: 16px;
+}
+
+.reporte-panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.reporte-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.reporte-seccion-titulo {
+  color: var(--text-dark);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.96rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.reporte-panel-sub {
+  color: var(--text-light);
+  font-size: 0.78rem;
+  margin: 4px 0 0;
+}
+
+/* Barras y categorias */
+.distribucion-bar {
+  display: flex;
+  width: 100%;
+  height: 18px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--bg-soft);
+  margin: 12px 0 16px;
+}
+
+.distribucion-fav,
+.distribucion-normal {
+  display: block;
+  min-width: 0;
+  transition: width 0.2s ease;
+}
+
+.distribucion-fav { background: var(--gold); }
+.distribucion-normal { background: var(--green); }
+
+.distribucion-leyenda {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--text-mid);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.distribucion-leyenda span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.distribucion-leyenda i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.leyenda-fav { background: var(--gold); }
+.leyenda-normal { background: var(--green); }
+
+.categoria-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.categoria-row {
+  display: grid;
+  gap: 7px;
+}
+
+.categoria-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.categoria-nombre {
+  color: var(--text-dark);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.categoria-total {
+  color: var(--text-mid);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.categoria-bar {
+  width: 100%;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  overflow: hidden;
+}
+
+.categoria-bar-fill {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  border-radius: inherit;
+  background: #5b8db8;
+}
+
+.categoria-row:nth-child(2n) .categoria-bar-fill { background: #4a9c7e; }
+.categoria-row:nth-child(3n) .categoria-bar-fill { background: #c9a227; }
+.categoria-row:nth-child(4n) .categoria-bar-fill { background: #7b7fc4; }
+
+.reporte-vacio {
+  color: var(--text-light);
+  font-size: 0.88rem;
+  text-align: center;
+  padding: 28px 14px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Ajuste para pantallas pequenas */
+@media (max-width: 900px) {
+  .reporte-tarjetas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reporte-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .reporte-wrapper {
+    padding: 20px 16px 44px;
+  }
+
+  .reporte-topbar,
+  .reporte-hero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .reporte-tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .tarjeta-numero {
+    font-size: 2.25rem;
+  }
+}
+
+/* Cuando se imprime */
+@media print {
+  .sidebar,
+  .reporte-topbar,
+  .btn-reporte-primary {
+    display: none !important;
+  }
+
+  .main-content {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .reporte-wrapper {
+    max-width: none;
+    padding: 0;
+  }
+}
