@@ -16,7 +16,7 @@ FIDUCCI es una aplicación web para administrar contactos. Permite iniciar sesi�
 - Reporte general por categoría y estado de favorito.
 - Edición del perfil de usuario.
 
-## Tecnologías
+## Lenguajes
 
 - Python 3 y Flask.
 - HTML5, CSS3 y JavaScript.
