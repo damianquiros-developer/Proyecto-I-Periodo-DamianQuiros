@@ -88,5 +88,5 @@ Las pruebas trabajan con una copia temporal de `contactos.xlsx`; no modifican lo
 
 ## Autor
 
-**Damián Quirós** - Sección 11-5 / 11-6, Programación Web, 2026.
+**Damián Quirós** - Sección 11-5, Programación Web, 2026.
 
